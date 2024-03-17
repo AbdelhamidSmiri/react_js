@@ -1,36 +1,34 @@
-import { Component } from "react";
+// import { Component } from "react";
 
-export default class Counter extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            counter: 0,
-            min: 0,
-            age: 25
+import { useEffect, useState } from "react";
+
+export default function Counter() {
+
+    const [counter, setCounter] = useState(0);
+    const [min, setMin] = useState(0);
+
+    useEffect(() => {
+        const intervalId = setInterval(incrementCounter, 1000);
+        return () => clearInterval(intervalId);
+    }, [])
+    useEffect(() => {
+        console.log("use Effect will update changed")
+    }, [min])
+
+    const incrementCounter = () => {
+        if (counter === 60) {
+            setCounter(0)
+            setMin((prevMin) => prevMin + 1);
         }
-    }
-    componentDidMount() {
-        setInterval(() => { // had setInterval katkhaliha kt3awd 
-            if (this.state.counter === 60) {
-
-                this.setState({ counter: 0 })
-                this.setState({ min: this.state.min + 1 })
-            }
-            else { this.setState({ counter: this.state.counter + 1 }) }
-        }, 1000)
-
-    }
-
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        console.log(nextState.age);
-        if (nextState.age !== this.state.age) {
-            return false
+        else {
+            console.log(counter)
+            setCounter((prevCounter) => prevCounter + 1);
         }
-        return true
+
     }
-    render() {
-        return <div>
-            il y a {this.state.min} min {this.state.counter} secondes
-        </div>
-    }
+
+    return (<div>
+        il y a {min} min {counter} secondes
+    </div>)
+
 }

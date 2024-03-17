@@ -13,15 +13,17 @@ import FormsUser from './Forms/FormsUser';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const fruitsarray = ['Strawberry', 'orange', 'apple', 'citron', 'lemon'];
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
+  <>
     <Test lastname='Abdelhamid' />
-    <Inputs />
+    {/* <Inputs /> */}
     <Counter />
     {/* <List fruits={fruitsarray} />
     <Buttons />
     
     <FormsUser /> */}
-  </React.StrictMode>
+  </>
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

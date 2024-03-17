@@ -1,13 +1,17 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function Inputs() {
     const [listFruit, setListFruit] = useState([]);
     const [fruit, setfruit] = useState("");
 
+
+    useEffect(() => {
+        console.log("coco from use effect from inputs")
+    }, [])
+
     const displaytable = () => listFruit.map((fruit, index) =>
         <li key={index}>{fruit}</li>
     );
-
 
     const handelInput = () => {
         setfruit(document.querySelector("#fruit_input").value)
